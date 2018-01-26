@@ -11,8 +11,8 @@ $auth['admin'] = [];
 //Define pages for each role. Is a user is not authenticated to visit a page
 //he is automatically redirected to the first page in the list of pages he is
 //allowed to visit.
-array_push($auth['guest'], 'home');
 array_push($auth['guest'], 'login', 'register');
+array_push($auth['guest'], 'home');
 
 array_push($auth['user'], 'home');
 array_push($auth['user'], 'graph');

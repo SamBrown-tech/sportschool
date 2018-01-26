@@ -81,7 +81,7 @@ abstract class Model {
         }
     }
 
-    // This removes the object from the database
+    // Checks if object already exists and accordingly uses the update or create function
 
     public function save()
     {
@@ -98,6 +98,8 @@ abstract class Model {
             die();
         }
     }
+
+    // Updates a record in the database
 
     private function update()
     {
@@ -130,6 +132,8 @@ abstract class Model {
 
     protected abstract static function newModel($obj);
 
+    // Creates a record in the database
+
     private function create()
     {
         try {
@@ -158,7 +162,7 @@ abstract class Model {
         }
     }
 
-    // Find every row in a table
+    // This removes the object from the database
 
     public function remove()
     {
@@ -175,6 +179,8 @@ abstract class Model {
             die();
         }
     }
+
+    // Used to declare a one-to-many relation (include this in the Model that "has one")
 
     protected function belongsTo($type, $field = "")
     {
@@ -198,6 +204,8 @@ abstract class Model {
         }
     }
 
+    // Used to declare a one-to-many relation (include this in the Model that "has many")
+
     protected function hasMany($type, $field = "")
     {
         try {
@@ -216,6 +224,8 @@ abstract class Model {
             die();
         }
     }
+
+    // Gets the current ID
 
     public function getId() {
         try {

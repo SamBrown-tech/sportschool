@@ -5,6 +5,7 @@ nav {
     width: 100%;
     background: #F5F5F5;
     border-bottom: 1px solid #CCC;
+    z-index: 1;
 }
 
 nav div {

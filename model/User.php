@@ -2,7 +2,7 @@
 
 class User extends Model {
 
-    //protected $id;
+    // Declare properties - The id property is made automatically for every Model
     protected $username;
     protected $password;
     protected $salt;
@@ -16,6 +16,8 @@ class User extends Model {
     protected $house_number;
     protected $postal_code;
     protected $role;
+    protected $iban;
+    protected $subscription;
     protected $card;
 
     public function __construct($username = "")
@@ -25,6 +27,7 @@ class User extends Model {
         }
     }
 
+    // Login function that asks for varchar parameters and validates
     public static function login($username, $password) {
         $res = User::findBy('username', $username);
 
@@ -39,7 +42,9 @@ class User extends Model {
         return false;
     }
 
-    public static function register($username, $password, $name, $insertion, $lastname, $birthday, $email, $phone, $street, $house_number, $postal_code, $role) {
+    // Asks for all properties that are NN in the database and registers a new user
+
+    public static function register($username, $password, $name, $insertion, $lastname, $birthday, $email, $phone, $street, $house_number, $postal_code, $role, $iban, $subscription) {
         $user = new User($username);
         $user->setPassword($password);
         $user->name = $name;
@@ -52,6 +57,8 @@ class User extends Model {
         $user->house_number = $house_number;
         $user->postal_code = $postal_code;
         $user->role = $role;
+        $user->iban = $iban;
+        $user->Subscription = $subscription;
 
         if ($user->save()) {
             App::setLoggedInUser($user);
@@ -68,6 +75,11 @@ class User extends Model {
         return $this->hasMany('SportSession');
     }
 
+    public function getSubscription()
+	{
+        return $this->belongsTo('Subscription');
+    }
+
     // Setters
 
     private function setPassword($password)
@@ -75,6 +87,8 @@ class User extends Model {
         $this->salt = self::generateSalt();
         $this->password = hash('sha256', $password . $this->salt);
     }
+
+
 
     public static function generateSalt()
     {

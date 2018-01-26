@@ -2,6 +2,7 @@
 
 class Location extends Model {
 
+	// Declare properties - The id property is made automatically for every Model
 	protected $name;
 	protected $street;
 	protected $postal_code;
@@ -10,15 +11,15 @@ class Location extends Model {
 	public function __construct(){
 	}
 
+	// Asks for all properties that are NN in the database and registers a new location
+
 	public static function register($name, $street, $postal_code, $house_number)
 	{
-
 		$location = new Location();
 		$location->name = $name;
 		$location->street = $street;
 		$location->postal_code = $postal_code;
 		$location->house_number = $house_number;
-
 
         if ($location->save()) {
             return $location;
@@ -26,6 +27,8 @@ class Location extends Model {
             return false;
         }
     }
+
+	// Generates a form to add a new location
 
     public static function addLocationForm(){
     	$form = new Form();
@@ -35,7 +38,6 @@ class Location extends Model {
 		$form->addField((new FormField("postal_code"))->type("text")->placeholder("Postcode"));
 		$form->addField((new FormField("house_number"))->type("number")->placeholder("Huisnummer"));
 
-
     	return $form;
     }
 
@@ -44,7 +46,7 @@ class Location extends Model {
 		return true;
     }
 
-	// Getters 
+	// Getters
 
     public function getName(){
     	return $this->name;

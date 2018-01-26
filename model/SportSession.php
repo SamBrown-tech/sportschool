@@ -2,6 +2,7 @@
 
 class Sport_session extends Model {
 
+	// Declare properties - The id property is made automatically for every Model
 	protected $session_start;
 	protected $session_end;
 	protected $user;
