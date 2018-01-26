@@ -58,7 +58,7 @@ class User extends Model {
         $user->postal_code = $postal_code;
         $user->role = $role;
         $user->iban = $iban;
-        $user->Subscription = $subscription;
+        $user->subscription = $subscription;
 
         if ($user->save()) {
             App::setLoggedInUser($user);
@@ -66,6 +66,78 @@ class User extends Model {
         } else {
             return false;
         }
+    }
+
+    protected static function newModel($obj)
+    {
+        $email = $obj->email;
+        $existing = User::findBy('email', $email);
+        if(count($existing) > 0) return false;
+
+        //Check if user is valid
+        return true;
+    }
+
+    // Getters
+
+    public function getUsername()
+    {
+        return $this->username;
+    }
+
+    public function getRole()
+    {
+        return $this->role;
+    }
+
+    public function getName()
+    {
+      return $this->name;
+    }
+
+    public function getInsertion()
+    {
+      return $this->insertion;
+    }
+
+    public function getLastname()
+    {
+      return $this->lastname;
+    }
+
+    public function getBirthday()
+    {
+      return $this->birthday;
+    }
+
+    public function getEmail()
+    {
+      return $this->email;
+    }
+
+    public function getPhone()
+    {
+      return $this->phone;
+    }
+
+    public function getStreet()
+    {
+      return $this->street;
+    }
+
+    public function getHouse_number()
+    {
+      return $this->house_number;
+    }
+
+    public function getPostal_code()
+    {
+      return $this->postal_code;
+    }
+
+    public function getIban()
+    {
+      return $this->iban;
     }
 
     // Relations
@@ -82,45 +154,59 @@ class User extends Model {
 
     // Setters
 
-    private function setPassword($password)
+    public function setUsername($username)
     {
-        $this->salt = self::generateSalt();
-        $this->password = hash('sha256', $password . $this->salt);
+      $this->username = $username;
     }
 
-
-
-    public static function generateSalt()
+    public function setName($name)
     {
-        return uniqid();
+      $this->name = $name;
     }
 
-    public static function getLoginForm()
+    public function setInsertion($insertion)
     {
-        $form = new Form();
-        $form->addField(new FormField("username", "text", "username"));
-
-        return $form->getHTML();
+      $this->insertion = $insertion;
     }
 
-    protected static function newModel($obj)
+    public function setLastname($lastname)
     {
-        $email = $obj->email;
-        $existing = User::findBy('email', $email);
-        if(count($existing) > 0) return false;
-
-        //Check if user is valid
-        return true;
+      $this->lastname = $lastname;
     }
 
-    public function getUsername()
+    public function setBirthday($birthday)
     {
-        return $this->username;
+      $this->birthday = $birthday;
     }
 
-    public function getRole()
+    public function setEmail($email)
     {
-        return $this->role;
+      $this->email = $email;
+    }
+
+    public function setPhone($phone)
+    {
+      $this->phone = $phone;
+    }
+
+    public function setStreet($street)
+    {
+      $this->street = $street;
+    }
+
+    public function setHouse_number($house_number)
+    {
+      $this->house_number = $house_number;
+    }
+
+    public function setPostal_code($postal_code)
+    {
+      $this->postal_code = $postal_code;
+    }
+
+    public function setIban($iban)
+    {
+      $this->iban = $iban;
     }
 
     public function setRole($role)
@@ -131,6 +217,19 @@ class User extends Model {
             return true;
         }
         return false;
+    }
+
+    // Hashes the password and generates salt
+
+    private function setPassword($password)
+    {
+        $this->salt = self::generateSalt();
+        $this->password = hash('sha256', $password . $this->salt);
+    }
+
+    public static function generateSalt()
+    {
+        return uniqid();
     }
 
     private function checkPassword($password)

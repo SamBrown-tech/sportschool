@@ -17,3 +17,14 @@ private $database = "";
 ```
 
 Just... \*sigh\*. Just edit the connection info. Don't do anything else with this file. The Model and App class use it.
+
+
+
+
+#### Userdetails
+```php
+__username - password__;
+santino = user1234;
+user2 = user1234;
+benno = admin123;
+```

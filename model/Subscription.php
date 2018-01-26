@@ -38,9 +38,14 @@ class Subscription extends Model {
     }
 
 	// Relations
-	public function getUsers()
+	public function getUser()
 	{
         return $this->hasMany('User');
+    }
+
+    // Setters
+    public function setName($name) {
+      $this->name = $name;
     }
 }
 ?>

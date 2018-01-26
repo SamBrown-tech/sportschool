@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Gegenereerd op: 25 jan 2018 om 11:14
+-- Gegenereerd op: 26 jan 2018 om 12:51
 -- Serverversie: 5.7.14
 -- PHP-versie: 7.0.10
 
@@ -56,7 +56,8 @@ CREATE TABLE `location` (
 --
 
 INSERT INTO `location` (`id`, `name`, `street`, `postal_code`, `house_number`) VALUES
-(1, 'Utrecht', 'Eerste sportschool van Benno', '2349AJ', 18);
+(1, 'Utrecht', 'Eerste sportschool van Benno', '2349AJ', 18),
+(2, 'rotterdam', 'tweede sportschool', '1234AB', 8);
 
 -- --------------------------------------------------------
 
@@ -90,8 +91,29 @@ CREATE TABLE `sport_session` (
 --
 
 INSERT INTO `sport_session` (`id`, `session_start`, `session_end`, `user`, `location`) VALUES
-(1, '2018-01-25 10:17:18', '2018-01-25 10:20:18', 1, 1),
-(2, '2018-01-25 10:19:18', '2018-01-25 10:22:20', 1, 1);
+(3, '2018-01-26 10:19:00', '2018-01-26 10:25:00', 1, 1),
+(4, '2018-01-26 10:39:00', '2018-01-26 10:45:00', 1, 2);
+
+-- --------------------------------------------------------
+
+--
+-- Tabelstructuur voor tabel `subscription`
+--
+
+CREATE TABLE `subscription` (
+  `id` int(11) NOT NULL,
+  `name` varchar(40) NOT NULL,
+  `price` float NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Gegevens worden geëxporteerd voor tabel `subscription`
+--
+
+INSERT INTO `subscription` (`id`, `name`, `price`) VALUES
+(1, 'student', 15),
+(2, 'daluur', 20),
+(3, 'onbeperkt', 30);
 
 -- --------------------------------------------------------
 
@@ -114,6 +136,8 @@ CREATE TABLE `user` (
   `house_number` varchar(5) NOT NULL,
   `postal_code` varchar(6) NOT NULL,
   `role` varchar(20) NOT NULL,
+  `iban` varchar(18) NOT NULL,
+  `subscription` int(11) DEFAULT NULL,
   `card` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -121,9 +145,10 @@ CREATE TABLE `user` (
 -- Gegevens worden geëxporteerd voor tabel `user`
 --
 
-INSERT INTO `user` (`id`, `username`, `password`, `salt`, `name`, `insertion`, `lastname`, `birthday`, `email`, `phone`, `street`, `house_number`, `postal_code`, `role`, `card`) VALUES
-(1, 'santino', '71aac40d41fee6ee9da5a83b74af85ed817f9ae73944a08e6d29d4f79dd47781', '5a68f06d637c8', 'Santino', 'den', 'Brave', '1995-09-11', 'test@test.com', '0612345678', 'Daltonlaan', '200', '2349GA', 'user', NULL),
-(2, 'benno', 'd2c79a011f403206a21c0ce86d3b7bfe921f5c4fd4d80b5907ff6750045ad7c9', '5a699fade8744', 'Benno', 'de', 'Sportschoolman', '1982-02-02', 'benno@sportschool.com', '0612312312', 'Sportschoolstraat', '12', '1234AB', 'admin', NULL);
+INSERT INTO `user` (`id`, `username`, `password`, `salt`, `name`, `insertion`, `lastname`, `birthday`, `email`, `phone`, `street`, `house_number`, `postal_code`, `role`, `iban`, `subscription`, `card`) VALUES
+(1, 'santino', '097f74cfaf6a0c27dc94bae2031ce60c543b530983dd28129ee3a11971d26daf', '5a6b170dde658', 'santino', 'den', 'brave', '1995-09-11', 'santino@mail.com', '0612312312', 'Street', '12', '1234AB', 'user', 'NL99RABO123456890', 3, NULL),
+(2, 'Benno', '9bf1eb457f1baa73e32f1c1c9372579d87ae28da58441ff3d152103ef2f996e2', '5a6b203ae9f78', 'Benno', 'de', 'Jong', '1982-09-11', 'benno@sportschool.com', '0612312312', 'street', '12', '1234AB', 'admin', '', NULL, NULL),
+(3, 'user2', '84c5519b47c5fabbe728875c06d820b5e597ab0b2f3ec9acf88b0bb90b2806b6', '5a6b240d3775c', 'User', 'test', 'user', '1998-09-12', 'test@user.com', '0612345678', 'Straatnaam', '123', '2319GA', 'user', 'NL99ABN1231231231', 2, NULL);
 
 --
 -- Indexen voor geëxporteerde tabellen
@@ -158,11 +183,18 @@ ALTER TABLE `sport_session`
   ADD KEY `location` (`location`);
 
 --
+-- Indexen voor tabel `subscription`
+--
+ALTER TABLE `subscription`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexen voor tabel `user`
 --
 ALTER TABLE `user`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `card` (`card`);
+  ADD KEY `card` (`card`),
+  ADD KEY `abonnement` (`subscription`);
 
 --
 -- AUTO_INCREMENT voor geëxporteerde tabellen
@@ -177,7 +209,7 @@ ALTER TABLE `device_session`
 -- AUTO_INCREMENT voor een tabel `location`
 --
 ALTER TABLE `location`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT voor een tabel `sports_device`
 --
@@ -187,12 +219,17 @@ ALTER TABLE `sports_device`
 -- AUTO_INCREMENT voor een tabel `sport_session`
 --
 ALTER TABLE `sport_session`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+--
+-- AUTO_INCREMENT voor een tabel `subscription`
+--
+ALTER TABLE `subscription`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT voor een tabel `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- Beperkingen voor geëxporteerde tabellen
 --
@@ -210,6 +247,12 @@ ALTER TABLE `device_session`
 ALTER TABLE `sport_session`
   ADD CONSTRAINT `sport_session_ibfk_1` FOREIGN KEY (`user`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `sport_session_ibfk_2` FOREIGN KEY (`location`) REFERENCES `location` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Beperkingen voor tabel `user`
+--
+ALTER TABLE `user`
+  ADD CONSTRAINT `user_ibfk_1` FOREIGN KEY (`subscription`) REFERENCES `subscription` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

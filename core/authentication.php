@@ -15,7 +15,7 @@ array_push($auth['guest'], 'login', 'register');
 array_push($auth['guest'], 'home');
 
 array_push($auth['user'], 'home');
-array_push($auth['user'], 'graph');
+array_push($auth['user'], 'graph', 'sportSessions');
 array_push($auth['user'], 'account', 'logout');
 
 array_push($auth['admin'], 'home');

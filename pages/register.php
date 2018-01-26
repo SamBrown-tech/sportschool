@@ -14,6 +14,8 @@ if(isset($_POST['username'])) {
     $inputStreet = htmlspecialchars($_POST['street']);
     $inputNumber = htmlspecialchars($_POST['house_number']);
     $inputPostal = htmlspecialchars($_POST['postal_code']);
+    $inputIban = htmlspecialchars($_POST['iban']);
+    $inputSub = htmlspecialchars($_POST['subscription']);
 
     //Validate input
     $errors = [];
@@ -33,7 +35,7 @@ if(isset($_POST['username'])) {
     } else {
       //Register user
       $user = User::register($inputUser, $inputPass, $inputName, $inputInsertion, $inputLast, $inputBirth, $inputEmail,
-      $inputPhone, $inputStreet, $inputNumber, $inputPostal, 'user');
+      $inputPhone, $inputStreet, $inputNumber, $inputPostal, 'user', $inputIban, $inputSub);
       if($user) {
           echo $user->getUsername();
 
@@ -49,18 +51,27 @@ if(isset($_POST['username'])) {
 
     <form action="?page=register" method="POST">
 
-        <input type="text" placeholder="Username" required name="username"/><br/>
-        <input type="password" placeholder="Password" required name="password"/><br/>
-        <input type="password" placeholder="Repeat" required name="repeat"/><br/>
-        <input type="text" placeholder="First name" required name="name"/><br/>
-        <input type="text" placeholder="Insertion" required name="insertion"/><br/>
-        <input type="text" placeholder="Last name" required name="lastname"/><br/>
-        <input type="date" placeholder="Birthday" required name="birthday"/><br/>
-        <input type="email" placeholder="E-mail" required name="email"/><br/>
-        <input type="text" placeholder="Phone number" required name="phone"/><br/>
-        <input type="text" placeholder="Street" required name="street"/><br/>
-        <input type="text" placeholder="House number" required name="house_number"/><br/>
-        <input type="text" placeholder="Postal code" required name="postal_code"/><br/>
+        <input class="float-left" type="text" placeholder="Username" required name="username"/><br><br>
+        <input class="float-left" type="password" placeholder="Password" required name="password"/><br><br>
+        <input class="float-left" type="password" placeholder="Repeat" required name="repeat"/><br><br>
+        <input class="float-left" type="text" placeholder="First name" required name="name"/><br><br>   
+        <input class="float-left" type="text" placeholder="Insertion" required name="insertion"/><br><br>
+        <input class="float-left" type="text" placeholder="Last name" required name="lastname"/><br><br>
+        <input class="float-left" type="date" placeholder="Birthday" required name="birthday"/><br><br>
+        <input class="float-left" type="email" placeholder="E-mail" required name="email"/><br><br>
+        <input class="float-left" type="text" placeholder="Phone number" required name="phone"/><br><br>
+        <input class="float-left" type="text" placeholder="Street" required name="street"/><br><br>
+        <input class="float-left" type="text" placeholder="House number" required name="house_number"/><br><br>
+        <input class="float-left" type="text" placeholder="Postal code" required name="postal_code"/><br><br>
+        <input class="float-left" type="text" placeholder="Iban number" required name="iban"/><br><br>
+        <select class="float-left" required name="subscription">
+            <?php
+            $subscriptions = Subscription::find();
+            foreach ($subscriptions as $subscription){
+                echo "<option value=". $subscription->getId() .">". $subscription->getName() ."</option>";
+            }
+            ?>
+        </select>*kies uw abonnement<br><br>
 
         <input type="submit" value="Register"/>
     </form>

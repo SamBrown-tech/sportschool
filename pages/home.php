@@ -58,10 +58,10 @@
                 <div class="card-body">
                     <h1 class="card-title pricing-card-title">&euro;15 <small class="text-muted">/ maand</small></h1>
                     <ul class="list-unstyled mt-3 mb-4">
-                        <li>10 users included</li>
-                        <li>2 GB of storage</li>
-                        <li>Email support</li>
-                        <li>Help center access</li>
+                        <li>Zeer voordelig</li>
+                        <li>Onbeperkt sporten</li>
+                        <li>Ideaal voor studenten</li>
+                        <li>Studentenpas verplicht</li>
                     </ul>
                     <button type="button" class="btn btn-lg btn-block btn-primary">Meer informatie</button>
                 </div>
@@ -73,10 +73,9 @@
                 <div class="card-body">
                     <h1 class="card-title pricing-card-title">&euro;20 <small class="text-muted">/ maand</small></h1>
                     <ul class="list-unstyled mt-3 mb-4">
-                        <li>20 users included</li>
-                        <li>10 GB of storage</li>
-                        <li>Priority email support</li>
-                        <li>Help center access</li>
+                        <li>Jaarcontract</li>
+                        <li>Betaling per maand</li>
+                        <li>Sporten in de daluren</li><br>
                     </ul>
                     <button type="button" class="btn btn-lg btn-block btn-primary">Meer informatie</button>
                 </div>
@@ -88,10 +87,10 @@
                 <div class="card-body">
                     <h1 class="card-title pricing-card-title">&euro;30 <small class="text-muted">/ maand</small></h1>
                     <ul class="list-unstyled mt-3 mb-4">
-                        <li>30 users included</li>
-                        <li>15 GB of storage</li>
-                        <li>Phone and email support</li>
-                        <li>Help center access</li>
+                        <li>Onbeperkt sporten</li>
+                        <li>Maandelijks opzegbaar</li>
+                        <li>Trainingsschema's op maat</li>
+                        <li>Sport de eerste drie maanden gratis!*</li>
                     </ul>
                     <button type="button" class="btn btn-lg btn-block btn-primary">Meer informatie</button>
                 </div>

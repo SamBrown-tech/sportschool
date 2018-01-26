@@ -22,6 +22,9 @@
             <li>
 				<a href="?page=graph">Sportstracking</a>
 			</li>
+            <li>
+				<a href="?page=sportSessions">Mijn activiteiten</a>
+			</li>
 			<?php } ?>
             <?php if($_SESSION['role'] == "admin") { ?>
 			<li>
