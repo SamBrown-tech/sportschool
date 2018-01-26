@@ -8,6 +8,7 @@ class Location extends Model {
 	protected $postal_code;
 	protected $house_number;
 
+
 	public function __construct(){
 	}
 
@@ -48,8 +49,24 @@ class Location extends Model {
 
 	// Getters
 
-    public function getName(){
+    public function getName()
+	{
     	return $this->name;
+    }
+
+	public function getStreet()
+	{
+    	return $this->street;
+    }
+
+	public function getPostal_code()
+	{
+    	return $this->postal_code;
+    }
+
+	public function getHouse_number()
+	{
+    	return $this->house_number;
     }
 
 	// Relations

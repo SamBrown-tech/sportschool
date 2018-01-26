@@ -1,12 +1,15 @@
 <?php
 
-class Sport_session extends Model {
+class Device_session extends Model {
 
 	// Declare properties - The id property is made automatically for every Model
+	protected $sports_device;
+	protected $sport_session;
 	protected $session_start;
 	protected $session_end;
-	protected $user;
-	protected $location;
+	protected $meter_distance;
+	protected $weight;
+	protected $floors;
 
 
 	public function __construct(){
@@ -29,14 +32,14 @@ class Sport_session extends Model {
 
 	// Relations
 
-	public function getUser()
+	public function getSports_device()
 	{
-        return $this->belongsTo('User');
+        return $this->belongsTo('Sports_device');
     }
 
-    public function getLocation()
+    public function getSport_sessions()
 	{
-        return $this->belongsTo('Location');
+        return $this->belongsTo('Sport_session');
     }
 
 }

@@ -20,6 +20,7 @@ class User extends Model {
     protected $subscription;
     protected $card;
 
+
     public function __construct($username = "")
     {
         if($username != "") {

@@ -2,6 +2,7 @@
 
 if(isset($_POST['username'])) {
 
+    // Sets variables with the user input
     $inputUser = htmlspecialchars($_POST['username']);
     $inputPass = htmlspecialchars($_POST['password']);
     $inputPas2 = htmlspecialchars($_POST['repeat']);
@@ -44,36 +45,35 @@ if(isset($_POST['username'])) {
     }
 }
 ?>
-<div class="container">
-    <h1>
-        REGISTER
-    </h1>
+<div class="jumbotron page_layout">
+    <div class="container">
+        <h1>Registreren</h1>
+        <!-- Form to register a new account -->
+        <form action="?page=register" method="POST">
 
-    <form action="?page=register" method="POST">
+            <input class="float-left" type="text" placeholder="Username" required name="username"/><br><br>
+            <input class="float-left" type="password" placeholder="Password" required name="password"/><br><br>
+            <input class="float-left" type="password" placeholder="Repeat" required name="repeat"/><br><br>
+            <input class="float-left" type="text" placeholder="First name" required name="name"/><br><br>
+            <input class="float-left" type="text" placeholder="Insertion" required name="insertion"/><br><br>
+            <input class="float-left" type="text" placeholder="Last name" required name="lastname"/><br><br>
+            <input class="float-left" type="date" placeholder="Birthday" required name="birthday"/><br><br>
+            <input class="float-left" type="email" placeholder="E-mail" required name="email"/><br><br>
+            <input class="float-left" type="text" placeholder="Phone number" required name="phone"/><br><br>
+            <input class="float-left" type="text" placeholder="Street" required name="street"/><br><br>
+            <input class="float-left" type="text" placeholder="House number" required name="house_number"/><br><br>
+            <input class="float-left" type="text" placeholder="Postal code" required name="postal_code"/><br><br>
+            <input class="float-left" type="text" placeholder="Iban number" required name="iban"/><br><br>
+            <select class="float-left" required name="subscription">
+                <?php
+                $subscriptions = Subscription::find();
+                foreach ($subscriptions as $subscription){
+                    echo "<option value=". $subscription->getId() .">". $subscription->getName() ."</option>";
+                }
+                ?>
+            </select>*kies uw abonnement<br><br>
 
-        <input class="float-left" type="text" placeholder="Username" required name="username"/><br><br>
-        <input class="float-left" type="password" placeholder="Password" required name="password"/><br><br>
-        <input class="float-left" type="password" placeholder="Repeat" required name="repeat"/><br><br>
-        <input class="float-left" type="text" placeholder="First name" required name="name"/><br><br>   
-        <input class="float-left" type="text" placeholder="Insertion" required name="insertion"/><br><br>
-        <input class="float-left" type="text" placeholder="Last name" required name="lastname"/><br><br>
-        <input class="float-left" type="date" placeholder="Birthday" required name="birthday"/><br><br>
-        <input class="float-left" type="email" placeholder="E-mail" required name="email"/><br><br>
-        <input class="float-left" type="text" placeholder="Phone number" required name="phone"/><br><br>
-        <input class="float-left" type="text" placeholder="Street" required name="street"/><br><br>
-        <input class="float-left" type="text" placeholder="House number" required name="house_number"/><br><br>
-        <input class="float-left" type="text" placeholder="Postal code" required name="postal_code"/><br><br>
-        <input class="float-left" type="text" placeholder="Iban number" required name="iban"/><br><br>
-        <select class="float-left" required name="subscription">
-            <?php
-            $subscriptions = Subscription::find();
-            foreach ($subscriptions as $subscription){
-                echo "<option value=". $subscription->getId() .">". $subscription->getName() ."</option>";
-            }
-            ?>
-        </select>*kies uw abonnement<br><br>
-
-        <input type="submit" value="Register"/>
-    </form>
-
+            <input type="submit" value="Register"/>
+        </form>
+    </div>
 </div>

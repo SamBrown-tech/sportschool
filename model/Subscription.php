@@ -6,6 +6,7 @@ class Subscription extends Model {
 	protected $name;
 	protected $price;
 
+
 	public function __construct(){
 	}
 

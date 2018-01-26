@@ -1,6 +1,5 @@
 <?php
 $user = App::getUser();
-var_dump($user);
 if(isset($_POST['username'])) {
     $inputUsername = htmlspecialchars($_POST['username']);
 	$inputName = htmlspecialchars($_POST['name']);
@@ -32,7 +31,7 @@ if(isset($_POST['username'])) {
 
 ?>
 
-<div class="jumbotron">
+<div class="jumbotron page_layout">
 <div class="container">
     <h1>
         Wijzig Gebruiker
