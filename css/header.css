@@ -1,0 +1,42 @@
+nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: #F5F5F5;
+    border-bottom: 1px solid #CCC;
+}
+
+nav div {
+    width: 900px;
+    margin: auto;
+}
+
+nav ul {
+    list-style: none;
+}
+
+nav ul li {
+    float: left;
+    height: 100%;
+    width: auto;
+    padding: 7px 20px;
+    margin: 5px 0px;
+}
+
+nav ul.right li {
+    border-left: 1px solid #CCC;
+}
+
+nav ul.left li {
+    border-right: 1px solid #CCC;
+}
+
+nav ul li a:hover {
+    color: #000;
+}
+
+nav ul li a {
+	color: #555;
+	text-decoration: none;
+}

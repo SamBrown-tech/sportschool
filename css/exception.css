@@ -1,0 +1,54 @@
+
+.exception {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: #555;
+    z-index: 10000;
+}
+
+.innerException {
+    margin: auto;
+    width: 700px;
+}
+
+.exception h1 {
+    font-size: 24px;
+    color: #FFF;
+    font-weight: bold;
+    margin: 10px 0;
+    padding: 0;
+    text-shadow: -1px -1px 1px #333, 1px 1px 1px #CCC;
+}
+
+.exception h2 {
+    font-size: 16px;
+    color: #DDD;
+    margin: 2px 0px;
+    padding: 0;
+    font-weight: normal;
+    text-shadow: -1px -1px 1px #333, 1px 1px 1px #CCC;
+}
+
+.exception .stacktrace {
+    background: #333;
+    box-shadow: 3px 3px 3px #000 inset;
+    border-radius: 5px;
+    padding: 20px;
+    margin: 10px 0;
+    color: #BBB;
+}
+
+.exception .stacktrace h3 {
+    font-size: 20px;
+    color: #CCC;
+    margin: 6px -10px;
+    padding: 0;
+}
+
+.exception .stacktrace .trace {
+    padding: 10px 0;
+    border-bottom: 1px solid #CCC;
+}
