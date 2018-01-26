@@ -19,9 +19,10 @@ array_push($auth['user'], 'graph', 'sportSessions');
 array_push($auth['user'], 'account', 'logout');
 
 array_push($auth['admin'], 'home');
-array_push($auth['admin'], 'newLocation');
-array_push($auth['admin'], 'sportSessions');
-array_push($auth['admin'], 'account', 'logout');
+array_push($auth['admin'], 'newLocation', 'allLocations');
+array_push($auth['admin'], 'allDevices');
+array_push($auth['admin'], 'allSportSessions');
+array_push($auth['admin'], 'accounts', 'logout');
 
 //Determine page
 if(isset($_GET['page'])) {

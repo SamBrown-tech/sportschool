@@ -23,7 +23,7 @@ Just... \*sigh\*. Just edit the connection info. Don't do anything else with thi
 
 #### Userdetails
 ```php
-__username - password__;
+username - password;
 santino = user1234;
 user2 = user1234;
 benno = admin123;
