@@ -1,5 +1,4 @@
 <?php
-
 if(isset($_POST['username'])) {
 
     // Sets variables with the user input
@@ -18,33 +17,36 @@ if(isset($_POST['username'])) {
     $inputIban = htmlspecialchars($_POST['iban']);
     $inputSub = htmlspecialchars($_POST['subscription']);
 
-    //Validate input
+    // Validates input
     $errors = [];
 
-    if(strlen($inputPass) < 8) {
+    if(strlen($inputPass) < 8)
+    {
       array_push($errors, "Password should be at least 8 characters!");
     }
 
-    if($inputPass != $inputPas2) {
+    if($inputPass != $inputPas2)
+    {
       array_push($errors, "Passwords do not match!");
     }
 
-    if(count($errors) > 0) {
-      foreach($errors as $error) {
+    // Displays errors if any
+    if(count($errors) > 0)
+    {
+      foreach($errors as $error)
+      {
         App::addError($error);
       }
     } else {
-      //Register user
+      // Registers user and assigns 'user' role to it
       $user = User::register($inputUser, $inputPass, $inputName, $inputInsertion, $inputLast, $inputBirth, $inputEmail,
       $inputPhone, $inputStreet, $inputNumber, $inputPostal, 'user', $inputIban, $inputSub);
       if($user) {
           echo $user->getUsername();
-
           App::redirect("home");
       }
     }
-}
-?>
+} ?>
 <div class="jumbotron page_layout">
     <div class="container">
         <h1>Registreren</h1>
@@ -64,13 +66,13 @@ if(isset($_POST['username'])) {
             <input class="float-left" type="text" placeholder="House number" required name="house_number"/><br><br>
             <input class="float-left" type="text" placeholder="Postal code" required name="postal_code"/><br><br>
             <input class="float-left" type="text" placeholder="Iban number" required name="iban"/><br><br>
+            <!-- Creates dropdown for the subscriptions -->
             <select class="float-left" required name="subscription">
                 <?php
                 $subscriptions = Subscription::find();
                 foreach ($subscriptions as $subscription){
                     echo "<option value=". $subscription->getId() .">". $subscription->getName() ."</option>";
-                }
-                ?>
+                } ?>
             </select>*kies uw abonnement<br><br>
 
             <input type="submit" value="Register"/>

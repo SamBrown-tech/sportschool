@@ -1,5 +1,4 @@
 <?php
-
 if(isset($_POST['username'])) {
 
     // Validate input
@@ -13,13 +12,11 @@ if(isset($_POST['username'])) {
         App::addError("invalid combination");
         App::refresh();
     }
-}
-?>
+} ?>
 <div class="jumbotron page_layout">
     <div class="container">
-        <h1>
-            Inloggen
-        </h1>
+        <h1>Inloggen</h1>
+        <!-- Form to login -->
         <form action="?page=login" method="POST">
 
             <input type="text" placeholder="Username" required name="username"/><br/>

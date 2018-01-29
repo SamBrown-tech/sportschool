@@ -33,7 +33,7 @@ CREATE TABLE `device_session` (
   `session_start` time NOT NULL,
   `session_end` time NOT NULL,
   `meter_distance` int(11) NOT NULL,
-  `weight` float NOT NULL,
+  `sets` float NOT NULL,
   `floors` float NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 

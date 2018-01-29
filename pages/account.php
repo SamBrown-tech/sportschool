@@ -1,6 +1,8 @@
 <?php
 $user = App::getUser();
 if(isset($_POST['username'])) {
+
+    // Sets variables with the user input
     $inputUsername = htmlspecialchars($_POST['username']);
 	$inputName = htmlspecialchars($_POST['name']);
     $inputInsertion = htmlspecialchars($_POST['insertion']);
@@ -11,9 +13,12 @@ if(isset($_POST['username'])) {
     $inputStreet = htmlspecialchars($_POST['street']);
     $inputHouse_number = htmlspecialchars($_POST['house_number']);
     $inputPostal_code = htmlspecialchars($_POST['postal_code']);
-    $inputIban = htmlspecialchars($_POST['iban']);
+    if($_SESSION['role'] != "admin") {
+        $inputIban = htmlspecialchars($_POST['iban']);
+    }
 
 	$errors = [];
+    // Update the user if no errors
     $user->setUsername($inputUsername);
 	$user->setName($inputName);
     $user->setInsertion($inputInsertion);
@@ -24,7 +29,9 @@ if(isset($_POST['username'])) {
     $user->setStreet($inputStreet);
     $user->setHouse_number($inputHouse_number);
     $user->setPostal_code($inputPostal_code);
-    $user->setIban($inputIban);
+    if($_SESSION['role'] != "admin") {
+        $user->setIban($inputIban);
+    }
 	$user->save();
 	App::redirect("home");
 }
@@ -47,8 +54,9 @@ if(isset($_POST['username'])) {
     <input type="text" prequired name="street" value="<?php echo $user->getStreet(); ?>"/><br>
     <input type="text" prequired name="house_number" value="<?php echo $user->getHouse_number(); ?>"/><br>
     <input type="text" prequired name="postal_code" value="<?php echo $user->getPostal_code(); ?>"/><br>
-    <input type="text" prequired name="iban" value="<?php echo $user->getIban(); ?>"/><br>
-
+    <?php if($_SESSION['role'] != "admin") { ?>
+        <input type="text" prequired name="iban" value="<?php echo $user->getIban(); ?>"/><br>
+    <?php } ?>
 	<input type="submit" value="Edit"/>
 </form>
 </div>

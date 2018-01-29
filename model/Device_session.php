@@ -8,7 +8,7 @@ class Device_session extends Model {
 	protected $session_start;
 	protected $session_end;
 	protected $meter_distance;
-	protected $weight;
+	protected $sets;
 	protected $floors;
 
 
@@ -19,6 +19,15 @@ class Device_session extends Model {
     }
 
 	// Getters
+	public function getSports_device()
+	{
+		return $this->sports_device;
+	}
+
+	public function getSport_session()
+	{
+		return $this->sport_session;
+	}
 
 	public function getSession_start()
 	{
@@ -30,9 +39,24 @@ class Device_session extends Model {
 		return $this->session_end;
 	}
 
+	public function getMeter_distance()
+	{
+		return $this->meter_distance;
+	}
+
+	public function getSets()
+	{
+		return $this->sets;
+	}
+
+	public function getFloors()
+	{
+		return $this->floors;
+	}
+
 	// Relations
 
-	public function getSports_device()
+	public function getSports_devices()
 	{
         return $this->belongsTo('Sports_device');
     }

@@ -2,6 +2,7 @@
     <div class="container">
         <h1>Overzicht klanten</h1>
         <table class="table">
+            <!-- Creates the tableheaders -->
             <tr>
                 <th>Gebruikersnaam</th>
                 <th>Naam</th>
@@ -14,6 +15,7 @@
                 <th>Abonnement</th>
             </tr>
             <?php
+            // Retreives data from database
             $users = User::find();
             $customers = User::findBy('role', 'user');
 
@@ -30,11 +32,8 @@
                     echo '<td>'.$user->getPostal_code().'</td>';
                     echo '<td>'.ucfirst($user->getSubscription()->getName()).'</td></tr>';
                 }
-            }
-            ?>
+            } ?>
         </table>
-            <?php
-            echo '<h4>Er zijn momenteel ' . count($customers).' klanten.</h4>';
-            ?>
+        <?php echo '<h4>Er zijn momenteel ' . count($customers).' klanten.</h4>'; ?>
     </div>
 </div>

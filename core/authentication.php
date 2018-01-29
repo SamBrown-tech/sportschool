@@ -13,16 +13,19 @@ $auth['admin'] = [];
 //allowed to visit.
 array_push($auth['guest'], 'login', 'register');
 array_push($auth['guest'], 'home');
+array_push($auth['guest'], 'subscription');
 
 array_push($auth['user'], 'home');
-array_push($auth['user'], 'graph', 'sportSessions');
+array_push($auth['user'], 'send-mail');
+array_push($auth['user'], 'sportSessions', 'session');
+array_push($auth['user'], 'subscription');
 array_push($auth['user'], 'account', 'logout');
 
 array_push($auth['admin'], 'home');
 array_push($auth['admin'], 'newLocation', 'allLocations');
 array_push($auth['admin'], 'allDevices');
 array_push($auth['admin'], 'allSportSessions');
-array_push($auth['admin'], 'accounts', 'logout');
+array_push($auth['admin'], 'account', 'allAccounts', 'logout');
 
 //Determine page
 if(isset($_GET['page'])) {

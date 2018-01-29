@@ -8,7 +8,7 @@ if(isset($_POST['name'])) {
     $inputPostal = htmlspecialchars($_POST['postal_code']);
     $inputNumber = htmlspecialchars($_POST['house_number']);
 
-	// Register Location
+	// Registers Location
 	$location = Location::register($inputName, $inputDescription, $inputPostal, $inputNumber);
 	if($location) {
         App::redirect("home");
@@ -16,16 +16,11 @@ if(isset($_POST['name'])) {
 }
 ?>
 <div class="jumbotron page_layout">
-<div class="container">
-    <h1>
-        Voeg een nieuwe locatie toe
-    </h1>
-
-<?php
-
-$form = Location::addLocationForm()->getHTML();
-echo $form;
-
-?>
-</div>
+    <div class="container">
+        <h1>Voeg een nieuwe locatie toe</h1>
+        <?php
+        // Displays form
+        $form = Location::addLocationForm()->getHTML();
+        echo $form; ?>
+    </div>
 </div>
