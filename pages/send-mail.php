@@ -6,7 +6,7 @@ $mail->isSMTP();
 $mail->SMTPAuth = true;
 $mail->SMTPSecure = 'ssl';
 $mail->Host = 'smtp.gmail.com';
-$mail->Port = '465';
+$mail->Port = 465;
 $mail->isHTML();
 $mail->Username = 'sportschoolbenno123@gmail.com';
 $mail->Password = 'Benno123';

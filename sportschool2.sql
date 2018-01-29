@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Gegenereerd op: 26 jan 2018 om 12:51
+-- Gegenereerd op: 29 jan 2018 om 10:49
 -- Serverversie: 5.7.14
 -- PHP-versie: 7.0.10
 
@@ -32,10 +32,18 @@ CREATE TABLE `device_session` (
   `sport_session` int(11) NOT NULL,
   `session_start` time NOT NULL,
   `session_end` time NOT NULL,
-  `meter_distance` int(11) NOT NULL,
-  `sets` float NOT NULL,
-  `floors` float NOT NULL
+  `meter_distance` int(11) DEFAULT NULL,
+  `sets` float DEFAULT NULL,
+  `floors` float DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Gegevens worden geëxporteerd voor tabel `device_session`
+--
+
+INSERT INTO `device_session` (`id`, `sports_device`, `sport_session`, `session_start`, `session_end`, `meter_distance`, `sets`, `floors`) VALUES
+(1, 1, 3, '11:10:00', '11:20:00', 130, NULL, NULL),
+(2, 2, 3, '11:25:00', '11:52:14', NULL, 0.4, NULL);
 
 -- --------------------------------------------------------
 
@@ -57,7 +65,7 @@ CREATE TABLE `location` (
 
 INSERT INTO `location` (`id`, `name`, `street`, `postal_code`, `house_number`) VALUES
 (1, 'Utrecht', 'Eerste sportschool van Benno', '2349AJ', 18),
-(2, 'rotterdam', 'tweede sportschool', '1234AB', 8);
+(2, 'Rotterdam', 'Tweede sportschool', '1234AB', 8);
 
 -- --------------------------------------------------------
 
@@ -69,8 +77,17 @@ CREATE TABLE `sports_device` (
   `id` int(11) NOT NULL,
   `name` varchar(45) NOT NULL,
   `session_max_minutes` int(11) NOT NULL,
+  `calories_per_minute` float NOT NULL,
   `description` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Gegevens worden geëxporteerd voor tabel `sports_device`
+--
+
+INSERT INTO `sports_device` (`id`, `name`, `session_max_minutes`, `calories_per_minute`, `description`) VALUES
+(1, 'Hometrainer', 120, 12, 'Een hometrainer is het meest bekende fitnessapparaat.'),
+(2, 'Leg extension machine', 120, 4.7, 'De leg extension machine is een machine waarmee je geisoleerd de quadriceps in de benen kunt trainen.De quadriceps zijn de spieren aan de voorkant van je bovenbenen.');
 
 -- --------------------------------------------------------
 
@@ -91,8 +108,9 @@ CREATE TABLE `sport_session` (
 --
 
 INSERT INTO `sport_session` (`id`, `session_start`, `session_end`, `user`, `location`) VALUES
-(3, '2018-01-26 10:19:00', '2018-01-26 10:25:00', 1, 1),
-(4, '2018-01-26 10:39:00', '2018-01-26 10:45:00', 1, 2);
+(3, '2018-01-26 11:00:00', '2018-01-26 12:00:00', 1, 1),
+(4, '2018-01-26 14:39:00', '2018-01-26 15:45:00', 1, 2),
+(5, '2018-01-26 08:14:05', '2018-01-26 10:14:05', 3, 2);
 
 -- --------------------------------------------------------
 
@@ -204,7 +222,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT voor een tabel `device_session`
 --
 ALTER TABLE `device_session`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT voor een tabel `location`
 --
@@ -214,12 +232,12 @@ ALTER TABLE `location`
 -- AUTO_INCREMENT voor een tabel `sports_device`
 --
 ALTER TABLE `sports_device`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT voor een tabel `sport_session`
 --
 ALTER TABLE `sport_session`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT voor een tabel `subscription`
 --
