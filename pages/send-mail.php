@@ -1,25 +1,34 @@
-<?php
+<div class="jumbotron page_layout">
+    <div class="container">
+        <?php
+        if(isset($_POST['Text1'])) {
 
-require_once('PHPMAILER/PHPMailerAutoload.php');
-$mail = new PHPMailer();
-$mail->isSMTP();
-$mail->SMTPAuth = true;
-$mail->SMTPSecure = 'ssl';
-$mail->Host = 'smtp.gmail.com';
-$mail->Port = 465;
-$mail->isHTML();
-$mail->Username = 'sportschoolbenno123@gmail.com';
-$mail->Password = 'Benno123';
-$mail->SetFrom('sportschoolbenno123@gmail.com');
-$mail->Subject = 'Help!';
-$mail->Body = 'Errrr!';
-$mail->AddAddress('sportschoolbenno123@gmail.com');
+            // Sets variables with the user input
+            $to = 'benno@sportschool.com';
+            $subject = htmlspecialchars($_POST['subject']);
 
-try {$mail->Send();
-    echo 'Message has been sent';
+            $message = htmlspecialchars($_POST['Text1']);
+            $headers = 'From: ' .$user->getEmail();
 
-} catch (Exception $e) {
-    echo 'Message could not be sent. Mailer Error: ', $mail->ErrorInfo;
-}
+            // Sends email
+            if(mail($to, $subject, $message, $headers)){
+                echo '<script>window.alert("Email verstuurd");</script>';
+            }
+        }
+        // Retreive data from database
+        $user = App::getUser();
+        ?>
+        <!-- Email form -->
+        <h1>E-mail een medewerker</h1>
+        <form method="POST">
+            <b>Afzender</b><br>
+            <input type="text" name="email" value="<?php echo $user->getEmail();?>" readonly/><br>
+            <br><b>Onderwerp</b><br>
+            <input type="text" name="subject"/><br>
+            <br><b>Typ hier uw mail</b><br>
+            <textarea name="Text1" cols="24" rows="5"></textarea><br><br>
 
-?>
+        	<input type="submit" value="versturen"/>
+        </form>
+    </div>
+</div>
